@@ -55,7 +55,7 @@ targetWallet = "abcde"
 
 });
 
-app.listen(3000);
+app.listen(80);
 
 
 // stolen from https://ruu.vi/#BEQgAMO0D - hope that's fine!
