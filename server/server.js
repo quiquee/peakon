@@ -1,14 +1,12 @@
-var appPort = process.env.PORT || 80; // $ PORT=3000 node server.js
-var express = require('express');
-var bodyParser = require('body-parser');
-var IOTA = require('iota.lib.js');
+const appPort = process.env.PORT || 80; // $ PORT=3000 node server.js
+const express = require('express');
+const bodyParser = require('body-parser');
+const fs = require('fs');
+const IOTA = require('iota.lib.js');
 const base91 = require('node-base91');
 
+// express app
 var app = express();
-var iota = new IOTA({
-	'host': 'http://service.iotasupport.com',
-	'port': 14265
-});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -39,17 +37,34 @@ app.post('/', function (req, res) {
 		errorData.reason = 'missing data';
 	}
 
+	// more error checks
+
+	// exit early if something's wrong
 	if (errorData.reason) {
 		// send error response
 		res.status(500).json(errorData);
 		return;
 	}
 
+	// get beacon wallet from "DB"
+	var beaconWallets = JSON.parse(fs.readFileSync('wallets.json', 'utf8'));
+	var beaconKey = incominData.peripheralData + '--' + incominData.peripheralIdentifier;
+	incominData.sourceWallet = beaconWallets[beaconKey].wallet;
+	incominData.sourceReward = beaconWallets[beaconKey].reward;
+
 	// parse weather data from urlString
 	incominData.weatherData = null;
 	if (incominData.urlString) {
 		incominData.weatherData = parseWeatherData(incominData.urlString.replace('https://ruu.vi/#', ''));
 	}
+
+	// create a transaction to transfer sourceReward from sourceWallet to targetWallet
+	// IOTA connect
+	var iota = new IOTA({
+		'host': 'http://service.iotasupport.com',
+		'port': 14265
+	});
+
 
 
 	// send success response
