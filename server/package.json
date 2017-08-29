@@ -22,6 +22,8 @@
   "homepage": "https://github.com/quiquee/peakon#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
-    "express": "^4.15.4"
+    "express": "^4.15.4",
+    "iota.lib.js": "^0.4.0",
+    "node-base91": "^0.3.4"
   }
 }
