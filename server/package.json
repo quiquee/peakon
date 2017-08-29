@@ -1,0 +1,27 @@
+{
+  "name": "server",
+  "version": "0.0.1",
+  "description": "peakon server",
+  "main": "server.js",
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quiquee/peakon.git"
+  },
+  "keywords": [
+    "peakon"
+  ],
+  "author": "Rocco",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/quiquee/peakon/issues"
+  },
+  "homepage": "https://github.com/quiquee/peakon#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4"
+  }
+}
