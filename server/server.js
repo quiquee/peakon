@@ -20,14 +20,16 @@ app.get('/', function (req, res){
 });
 
 app.post('/', function (req, res) {
-/*
-peripheralData="0x1700f4080";
-peripheralIdentifier="9F76EE86-872D-407D-9C73-BA4DB6F4C468";
-serviceData = "\U00f9ruu.vi/#BEQgAMO0D";
-serviceUUID = feaa;
-urlString = "https://ruu.vi/#BEQgAMO0D";
-targetWallet = "abcde"
-*/
+	// expected JSON payload in req.body
+	/*
+	{
+		"peripheralData": "0x1700f4080",
+		"peripheralIdentifier": "9F76EE86-872D-407D-9C73-BA4DB6F4C468",
+		"urlString": "https://ruu.vi/#BEQgAMO0D",
+		"targetWallet": "abcde"
+	}
+	*/
+
 	let incominData = req.body;
 	let errorData = {"reason": null};
 	// console.log('incominData', incominData);
@@ -43,13 +45,12 @@ targetWallet = "abcde"
 		return;
 	}
 
-	// "parse" weather data from urlString
+	// parse weather data from urlString
+	incominData.weatherData = null;
 	if (incominData.urlString) {
 		incominData.weatherData = parseWeatherData(incominData.urlString.replace('https://ruu.vi/#', ''));
-	} else {
-		incominData.weatherData = null;
 	}
-	
+
 
 	// send success response
 	res.status(200).json(incominData);
@@ -58,6 +59,20 @@ targetWallet = "abcde"
 
 app.listen(appPort);
 console.log('Peakon server listens on port ' + appPort);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // stolen from https://ruu.vi/#BEQgAMO0D - hope that's fine!
 function parseWeatherData (variables) {
