@@ -1,3 +1,4 @@
+var appPort = process.env.PORT || 80; // $ PORT=3000 node server.js
 var express = require('express');
 var bodyParser = require('body-parser');
 var IOTA = require('iota.lib.js');
@@ -55,8 +56,8 @@ targetWallet = "abcde"
 
 });
 
-app.listen(80);
-
+app.listen(appPort);
+console.log('Peakon server listens on port ' + appPort);
 
 // stolen from https://ruu.vi/#BEQgAMO0D - hope that's fine!
 function parseWeatherData (variables) {
