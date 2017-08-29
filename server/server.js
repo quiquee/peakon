@@ -8,13 +8,19 @@ const base91 = require('node-base91');
 // express app
 var app = express();
 
+// IOTA connect
+var iota = new IOTA({
+	'host': 'http://service.iotasupport.com',
+	'port': 14265
+});
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.set('json spaces', 40);
 
 app.get('/', function (req, res){
-	res.status(200).send('Hello, this is the Peakon server. IOTA version: ' + iota.version);
+	let packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+	res.status(200).send('Hello, this is the Peakon server version ' + packageJson.version + '. IOTA version ' + iota.version);
 });
 
 app.post('/', function (req, res) {
@@ -59,13 +65,7 @@ app.post('/', function (req, res) {
 	}
 
 	// create a transaction to transfer sourceReward from sourceWallet to targetWallet
-	// IOTA connect
-	var iota = new IOTA({
-		'host': 'http://service.iotasupport.com',
-		'port': 14265
-	});
-
-
+	
 
 	// send success response
 	res.status(200).json(incominData);
