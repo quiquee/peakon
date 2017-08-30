@@ -5,6 +5,9 @@ const fs = require('fs');
 const IOTA = require('iota.lib.js');
 const base91 = require('node-base91');
 
+// tourist seed: LYCHWQDOEDUQIJDGTCLIFJPDQDHLXHWAWZKARVWKRPAVTMDHTEKWCXIKR9YXXXOGUSJXWLQHJLGTBEXJQ
+// tourist wallet: KR9EZO9VFSNYTOEPQBIOVYHGBJQGHZQICDDBYIDTBBCHBZPCGXPUYMXXYVBQHBDXTVSKADTJRVINZXK9XHTRKLEIP9
+
 // express app
 var app = express();
 
@@ -90,44 +93,17 @@ app.post('/', function (req, res) {
 		outgoingData.weatherData = parseWeatherData(incominData.urlString.replace('https://ruu.vi/#', ''));
 	}
 
-	// create a transaction to transfer sourceReward from sourceWallet to targetWallet
-	// iota.api.broadcastAndStore(trytes, callback)
-/*
-iota.api.prepareTransfers(seed,
-    [{
-        'address': 'SSEWOZSDXOVIURQRBTBDLQXWIXOLEUXHYBGAVASVPZ9HBTYJJEWBR9PDTGMXZGKPTGSUDW9QLFPJHTIEQZNXDGNRJE',
-        'value': 10000
-    }], {
-    'inputs': [
-        {
-            address: 'XB9IBINADVMP9K9FEIIR9AYEOFUU9DP9EBCKOTPSDVSNRRNVSJOPTFUHSKSLPDJLEHUBOVEIOJFPDCZS9',
-            balance: 1500,
-            keyIndex: 0,
-            security: 3
-        }, {
-            address: 'W9AZFNWZZZNTAQIOOGYZHKYJHSVMALVTWJSSZDDRVEIXXWPNWEALONZLPQPTCDZRZLHNIHSUKZRSZAZ9W',
-            balance: 8500,
-            keyIndex: 7,
-            security: 2
-        }
-    ], function(e, s) {
+	// if we have a targetWallet in incominData we'll initiate the transfer
+	if (typeof incominData.targetWallet !== 'undefined') {
 
+		res.status(200).json({
+			"success": true
+		});
 
-        console.log(e,s);
-})
-*/
-
-	// get wallet balance
-	// iota.api.getAccountData("SPZNRULYJXAGNPBZQWKYLWPMWLEJAF9AMETRBFKGMLNEDQBSPHUAZKEKLHXYQKDKEYAFFLJZJLYWAPGGY", {
-	// 	"start": 0,
-	// 	"end": 20,
-	// 	"security": 2
-	// }, (result) => {
-	// 	console.log(result);
-	// });
-
-	// send success response
-	res.status(200).json(outgoingData);
+	} else {
+		// otherwise just send back 
+		res.status(200).json(outgoingData);
+	}
 
 });
 
@@ -138,7 +114,9 @@ console.log('Peakon server listens on port ' + appPort);
 
 
 // // dev / debug
-// let seedNow = "HKOZBNYNSIMUIYKOMYBBFIAADNWELTVMVZNEWOP9SRWQKVFXEHYMSXMTYAYNFHEJNXNEFAQCYDPDZNMNS";
+let sourceSeed = "LYCHWQDOEDUQIJDGTCLIFJPDQDHLXHWAWZKARVWKRPAVTMDHTEKWCXIKR9YXXXOGUSJXWLQHJLGTBEXJQ";
+
+// iota.api.sendTransfer();
 
 // iota.api.getNewAddress(seedNow, {
 // 		"security": 2
