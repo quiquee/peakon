@@ -1,5 +1,6 @@
 const appPort = process.env.PORT || 80; // $ PORT=3000 node server.js
 const express = require('express');
+const serveStatic = require('serve-static')
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const IOTA = require('iota.lib.js');
@@ -17,13 +18,12 @@ var iota = new IOTA({
 	'port': 14700
 });
 
+app.use(serveStatic(__dirname + '/public'));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express['static'](__dirname + '/website'));
 
-app.get('/', function (req, res){
-	let packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
-	res.status(200).send('Hello, this is the Peakon server version ' + packageJson.version + '. IOTA version ' + iota.version);
-});
 
 app.get('/beacons', function (req, res){
 	let beaconData = JSON.parse(fs.readFileSync('wallets.json', 'utf8'));
@@ -34,8 +34,6 @@ app.get('/beacons', function (req, res){
 		beaconOut[i].beaconOwner = beaconData[i].beaconowner;
 		beaconOut[i].beaconReward = beaconData[i].reward;
 		beaconOut[i].beaconUrl = beaconData[i].wikipediaurl;
-
-		console.log(beaconOut[i]);
 	}
 	res.status(200).send(beaconOut);
 });
@@ -51,7 +49,7 @@ app.post('/', function (req, res) {
 	*/
 
 	let incominData = req.body;
-	console.log(Date.now() + ': incominData', JSON.stringify(incominData));
+	// console.log(Date.now() + ': incominData', JSON.stringify(incominData));
 
 	let outgoingData = {};
 	let errorData = {"reason": null};
@@ -74,7 +72,7 @@ app.post('/', function (req, res) {
 	// get beacon wallet from "DB"
 	var beaconWallets = JSON.parse(fs.readFileSync('wallets.json', 'utf8'));
 	var beaconKey = incominData.peripheralIdentifier;
-	console.log('beaconKey', beaconKey);
+	// console.log('beaconKey', beaconKey);
 	if (typeof beaconWallets[beaconKey] == 'undefined') {
 		// send error response
 		errorData.reason = 'beacon not found';
