@@ -22,6 +22,21 @@ app.get('/', function (req, res){
 	res.status(200).send('Hello, this is the Peakon server version ' + packageJson.version + '. IOTA version ' + iota.version);
 });
 
+app.get('/beacons', function (req, res){
+	let beaconData = JSON.parse(fs.readFileSync('wallets.json', 'utf8'));
+	let beaconOut = {};
+	for (let i in beaconData) {
+		beaconOut[i] = {};
+		beaconOut[i].beaconName = beaconData[i].beaconname;
+		beaconOut[i].beaconOwner = beaconData[i].beaconowner;
+		beaconOut[i].beaconReward = beaconData[i].reward;
+		beaconOut[i].beaconUrl = beaconData[i].wikipediaurl;
+
+		console.log(beaconOut[i]);
+	}
+	res.status(200).send(beaconOut);
+});
+
 app.post('/', function (req, res) {
 	// expected JSON payload in req.body
 	/*
@@ -142,8 +157,6 @@ console.log('Peakon server listens on port ' + appPort);
 // );
 
 // console.log('getAccountData() done');
-
-
 
 
 
