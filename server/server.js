@@ -55,7 +55,7 @@ app.post('/', function (req, res) {
 	// console.log('incominData', incominData);
 
 	// check if this contains all necessary data
-	if (!incominData.peripheralIdentifier || !incominData.targetWallet) {
+	if (!incominData.peripheralIdentifier) { //  || !incominData.targetWallet
 		errorData.reason = 'missing data';
 	}
 
