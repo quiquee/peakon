@@ -1,6 +1,37 @@
 {
-	"0x1700f4080--9F76EE86-872D-407D-9C73-BA4DB6F4C468": {
-		"wallet" : "zozozozoozozozozzozo",
+	"EDE14111-D13D-4451-8311-1BF51B6D9858": {
+		"beaconowner": "Rocco",
+		"beaconname": "Fichtelberg, Erzgebirge",
+		"wikipediaurl": "https://en.wikipedia.org/wiki/Fichtelberg",
+		"seed": "JS9IRFVDODOHCAMYKBRIBJZFLLWWELGGLESHUHGHCTM9BUDSK9RUTTIZKJCVQJBWAJUSIBSEMUF9ZXSET",
+		"wallet" : "VYBEELLYOYNMMHIHFTVATQY9VRAVVAOVNOSSMRLDFZDJOAHEQOVGVZJJYQUGJWWGBWK9HFQQGMS9YFKWW",
+		"reward": 3
+	},
+
+	"C6C7CEB5-EACE-4AF8-8AD0-30ACFCDEA25F": {
+		"beaconowner": "Mohammed",
+		"beaconname": "Toubkal, Atlas",
+		"wikipediaurl": "https://en.wikipedia.org/wiki/Toubkal",
+		"seed": "DDO9WOAP9UDECFABOMGIGIBWOTFWZJGKWFNKPKCQEVRGRUOBATEWNQVJOODRVXJV9TEYVGFHAMBCM9PFL",
+		"wallet" : "IGIRHNYFLSWKV9J9AVBQI9GRJOUCVUHVCRUGLDUJCUUHFNSGGANOOTNXOJPKFRHDTJDWLGYTIGVTXIKED",
 		"reward": 2
+	},
+
+	"A6557739-2AD1-4966-9F11-C96BBB568E87": {
+		"beaconowner": "Erick",
+		"beaconname": "Pico Bolivar, Merida State",
+		"wikipediaurl": "https://en.wikipedia.org/wiki/Pico_Bol%C3%ADvar",
+		"seed": "ONBQOLAWUGUBCUEPZUCBFN9RFEAAZTKLWTSCSZUYWCMPSEELLRKTPZUXGMELYFBPCRRIBLDABAXECMUYY",
+		"wallet" : "FGKJJBFFQQCWITRKHWKLRBRZ9OARLWODAPJKHQAKGDHO9BSWAKFLCVONRCJICSLGBVCWAYQ9FYERSLPIW",
+		"reward": 1
+	},
+
+	"640FAA20-79C8-42A4-8F64-BFB61FEB863A": {
+		"beaconowner": "Enrique",
+		"beaconname": "Cabo Quintres, La Atalaya",
+		"wikipediaurl": "https://ceb.wikipedia.org/wiki/Cabo_Quintres",
+		"seed": "HKOZBNYNSIMUIYKOMYBBFIAADNWELTVMVZNEWOP9SRWQKVFXEHYMSXMTYAYNFHEJNXNEFAQCYDPDZNMNS",
+		"wallet" : "HUCGOVI9CTXYARSORNUN9MV9RPNCQ9WWAZXNWSPCACPBHVBGISEJFFCOZSFITNROQZNMYVNU9NSAVHTIC",
+		"reward": 4
 	}
 }

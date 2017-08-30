@@ -10,13 +10,12 @@ var app = express();
 
 // IOTA connect
 var iota = new IOTA({
-	'host': 'http://service.iotasupport.com',
-	'port': 14265
+	'host': 'http://35.158.244.116',
+	'port': 14700
 });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
 
 app.get('/', function (req, res){
 	let packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
@@ -27,7 +26,6 @@ app.post('/', function (req, res) {
 	// expected JSON payload in req.body
 	/*
 	{
-		"peripheralData": "0x1700f4080",
 		"peripheralIdentifier": "9F76EE86-872D-407D-9C73-BA4DB6F4C468",
 		"urlString": "https://ruu.vi/#BEQgAMO0D",
 		"targetWallet": "abcde"
@@ -35,11 +33,14 @@ app.post('/', function (req, res) {
 	*/
 
 	let incominData = req.body;
+	console.log(Date.now() + ': incominData', JSON.stringify(incominData));
+
+	let outgoingData = {};
 	let errorData = {"reason": null};
 	// console.log('incominData', incominData);
 
 	// check if this contains all necessary data
-	if (!incominData.peripheralData || !incominData.peripheralIdentifier || !incominData.targetWallet) {
+	if (!incominData.peripheralIdentifier || !incominData.targetWallet) {
 		errorData.reason = 'missing data';
 	}
 
@@ -54,21 +55,64 @@ app.post('/', function (req, res) {
 
 	// get beacon wallet from "DB"
 	var beaconWallets = JSON.parse(fs.readFileSync('wallets.json', 'utf8'));
-	var beaconKey = incominData.peripheralData + '--' + incominData.peripheralIdentifier;
-	incominData.sourceWallet = beaconWallets[beaconKey].wallet;
-	incominData.sourceReward = beaconWallets[beaconKey].reward;
+	var beaconKey = incominData.peripheralIdentifier;
+	console.log('beaconKey', beaconKey);
+	if (typeof beaconWallets[beaconKey] == 'undefined') {
+		// send error response
+		errorData.reason = 'beacon not found';
+		res.status(500).json(errorData);
+		return;
+	}
+
+	outgoingData.beaconName = beaconWallets[beaconKey].beaconname;
+	outgoingData.beaconOwner = beaconWallets[beaconKey].beaconowner;
+	outgoingData.beaconReward = beaconWallets[beaconKey].reward;
+	outgoingData.beaconUrl = beaconWallets[beaconKey].wikipediaurl;
 
 	// parse weather data from urlString
-	incominData.weatherData = null;
+	outgoingData.weatherData = null;
 	if (incominData.urlString) {
-		incominData.weatherData = parseWeatherData(incominData.urlString.replace('https://ruu.vi/#', ''));
+		outgoingData.weatherData = parseWeatherData(incominData.urlString.replace('https://ruu.vi/#', ''));
 	}
 
 	// create a transaction to transfer sourceReward from sourceWallet to targetWallet
-	
+	// iota.api.broadcastAndStore(trytes, callback)
+/*
+iota.api.prepareTransfers(seed,
+    [{
+        'address': 'SSEWOZSDXOVIURQRBTBDLQXWIXOLEUXHYBGAVASVPZ9HBTYJJEWBR9PDTGMXZGKPTGSUDW9QLFPJHTIEQZNXDGNRJE',
+        'value': 10000
+    }], {
+    'inputs': [
+        {
+            address: 'XB9IBINADVMP9K9FEIIR9AYEOFUU9DP9EBCKOTPSDVSNRRNVSJOPTFUHSKSLPDJLEHUBOVEIOJFPDCZS9',
+            balance: 1500,
+            keyIndex: 0,
+            security: 3
+        }, {
+            address: 'W9AZFNWZZZNTAQIOOGYZHKYJHSVMALVTWJSSZDDRVEIXXWPNWEALONZLPQPTCDZRZLHNIHSUKZRSZAZ9W',
+            balance: 8500,
+            keyIndex: 7,
+            security: 2
+        }
+    ], function(e, s) {
+
+
+        console.log(e,s);
+})
+*/
+
+	// get wallet balance
+	// iota.api.getAccountData("SPZNRULYJXAGNPBZQWKYLWPMWLEJAF9AMETRBFKGMLNEDQBSPHUAZKEKLHXYQKDKEYAFFLJZJLYWAPGGY", {
+	// 	"start": 0,
+	// 	"end": 20,
+	// 	"security": 2
+	// }, (result) => {
+	// 	console.log(result);
+	// });
 
 	// send success response
-	res.status(200).json(incominData);
+	res.status(200).json(outgoingData);
 
 });
 
@@ -77,6 +121,27 @@ console.log('Peakon server listens on port ' + appPort);
 
 
 
+
+// // dev / debug
+// let seedNow = "HKOZBNYNSIMUIYKOMYBBFIAADNWELTVMVZNEWOP9SRWQKVFXEHYMSXMTYAYNFHEJNXNEFAQCYDPDZNMNS";
+
+// iota.api.getNewAddress(seedNow, {
+// 		"security": 2
+// 	}, (err, result) => {
+// 		console.log('getNewAddress(%s) result:', seedNow, err, result);
+// 	}
+// );
+
+// iota.api.getAccountData(seedNow, {
+// 		"start": 0,
+// 		"end": 20,
+// 		"security": 2
+// 	}, (err, result) => {
+// 		console.log('getAccountData(%s) result:', seedNow, err, result);
+// 	}
+// );
+
+// console.log('getAccountData() done');
 
 
 
