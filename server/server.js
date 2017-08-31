@@ -38,7 +38,7 @@ app.use(express['static'](__dirname + '/website'));
 
 // return JSON list of all beacons in DB
 app.get('/beacons', function (req, res){
-
+	// console.log('/beacons reached');
 	// load beacons from DB
 	let beaconData = JSON.parse(fs.readFileSync('wallets.json', 'utf8'));
 	let beaconOut = {};

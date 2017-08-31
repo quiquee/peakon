@@ -1,6 +1,6 @@
 {
   "name": "server",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "peakon server",
   "main": "server.js",
   "scripts": {
@@ -14,7 +14,7 @@
   "keywords": [
     "peakon"
   ],
-  "author": "Rocco",
+  "author": "Rocco, Enrique",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/quiquee/peakon/issues"
