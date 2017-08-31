@@ -1,6 +1,10 @@
 <HEAD>
 
 <STYLE type="text/css">
+#biglogo {
+    width: 300px;
+}
+
 [id^="togList"],                        /* HIDE CHECKBOX */
 [id^="togList"] ~ .list,                /* HIDE LIST */
 [id^="togList"] + label  span + span,   /* HIDE "Collapse" */
@@ -22,7 +26,7 @@
 
 <SCRIPT>
 $().ready(function () {
-$.getJSON( 'http://207.154.208.91/beacons',
+$.getJSON('/beacons',
          function(json) {
 
             $.each(json, function (i, result) {
@@ -83,7 +87,7 @@ function imageWp(viewer) {
 </HEAD>
 		
 <h1>Hi there, this is Peakon</h1>
-<img src="img/peakon-logo-dark-blue.png">
+<img id="biglogo" src="img/peakon-logo-dark-blue.png">
 	
 <h1>
 Peakon List
