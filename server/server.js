@@ -6,8 +6,19 @@ const fs = require('fs');
 const IOTA = require('iota.lib.js');
 const base91 = require('node-base91');
 
+
+// node on testnet
+// http://35.158.244.116:14700
+
+// add checksum to adresses (needed to send iotas in OSX wallet app on testnet):
+// iota.utils.addChecksum('--address--');
+
+// initial seed: SPZNRULYJXAGNPBZQWKYLWPMWLEJAF9AMETRBFKGMLNEDQBSPHUAZKEKLHXYQKDKEYAFFLJZJLYWAPGGY
+// initial wallet: X9CJWUPYBXAQAKVNXHPLTKHFOBRVUYIEAQNJPPSPGTXCFXRQQLNHMWQOIVRHROCFCOYANDVMWGWHDRQCXPEXJHBKVA
+
 // tourist seed: LYCHWQDOEDUQIJDGTCLIFJPDQDHLXHWAWZKARVWKRPAVTMDHTEKWCXIKR9YXXXOGUSJXWLQHJLGTBEXJQ
-// tourist wallet: KR9EZO9VFSNYTOEPQBIOVYHGBJQGHZQICDDBYIDTBBCHBZPCGXPUYMXXYVBQHBDXTVSKADTJRVINZXK9XHTRKLEIP9
+// tourist wallet: KR9EZO9VFSNYTOEPQBIOVYHGBJQGHZQICDDBYIDTBBCHBZPCGXPUYMXXYVBQHBDXTVSKADTJRVINZXK9X
+
 
 // express app
 var app = express();
@@ -18,16 +29,21 @@ var iota = new IOTA({
 	'port': 14700
 });
 
-app.use(serveStatic(__dirname + '/public'));
-
+// parse incoming JSON
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.urlencoded({ extended: false }));
+
+// serve static files from /website folder
 app.use(express['static'](__dirname + '/website'));
 
-
+// return JSON list of all beacons in DB
 app.get('/beacons', function (req, res){
+
+	// load beacons from DB
 	let beaconData = JSON.parse(fs.readFileSync('wallets.json', 'utf8'));
 	let beaconOut = {};
+
+	// strip out seed and other data
 	for (let i in beaconData) {
 		beaconOut[i] = {};
 		beaconOut[i].beaconName = beaconData[i].beaconname;
@@ -38,19 +54,18 @@ app.get('/beacons', function (req, res){
 	res.status(200).send(beaconOut);
 });
 
+// receive a "checkin" or "claim" request (it's a claim when "targetWallet" key is contained)
 app.post('/', function (req, res) {
 	// expected JSON payload in req.body
 	/*
 	{
-		"peripheralIdentifier": "9F76EE86-872D-407D-9C73-BA4DB6F4C468",
-		"urlString": "https://ruu.vi/#BEQgAMO0D",
-		"targetWallet": "abcde"
+		"urlString":"https://ruu.vi/#BFQfAMKIp",
+		"peripheralIdentifier":"640FAA20-79C8-42A4-8F64-BFB61FEB863A", 
+		"targetWallet": "KR9EZO9VFSNYTOEPQBIOVYHGBJQGHZQICDDBYIDTBBCHBZPCGXPUYMXXYVBQHBDXTVSKADTJRVINZXK9X"
 	}
 	*/
 
 	let incominData = req.body;
-	// console.log(Date.now() + ': incominData', JSON.stringify(incominData));
-
 	let outgoingData = {};
 	let errorData = {"reason": null};
 	// console.log('incominData', incominData);
@@ -94,8 +109,28 @@ app.post('/', function (req, res) {
 	// if we have a targetWallet in incominData we'll initiate the transfer
 	if (typeof incominData.targetWallet !== 'undefined') {
 
-		res.status(200).json({
-			"success": true
+		// error check
+		if (incominData.targetWallet.length != 81) {
+			errorData.reason = 'not a valid wallet';
+			res.status(500).json(errorData);
+			return;
+		}
+
+		iota.api.sendTransfer(beaconWallets[beaconKey].seed, 4, 9, [{
+			address: incominData.targetWallet,
+			value: beaconWallets[beaconKey].reward
+		}], (err, result) => {
+			console.log('sendTransfer() result:', err, result);
+
+			if (err) {
+				errorData.reason = err;
+				res.status(500).json(errorData);
+			} else {
+				res.status(200).json({
+					"success": true
+				});
+			}
+
 		});
 
 	} else {
@@ -111,11 +146,10 @@ console.log('Peakon server listens on port ' + appPort);
 
 
 
-// // dev / debug
-let sourceSeed = "LYCHWQDOEDUQIJDGTCLIFJPDQDHLXHWAWZKARVWKRPAVTMDHTEKWCXIKR9YXXXOGUSJXWLQHJLGTBEXJQ";
 
-// iota.api.sendTransfer();
+// let seedNow = '';
 
+// get a new address for a seed
 // iota.api.getNewAddress(seedNow, {
 // 		"security": 2
 // 	}, (err, result) => {
@@ -123,6 +157,7 @@ let sourceSeed = "LYCHWQDOEDUQIJDGTCLIFJPDQDHLXHWAWZKARVWKRPAVTMDHTEKWCXIKR9YXXX
 // 	}
 // );
 
+// get account data for a seed
 // iota.api.getAccountData(seedNow, {
 // 		"start": 0,
 // 		"end": 20,
@@ -131,7 +166,6 @@ let sourceSeed = "LYCHWQDOEDUQIJDGTCLIFJPDQDHLXHWAWZKARVWKRPAVTMDHTEKWCXIKR9YXXX
 // 		console.log('getAccountData(%s) result:', seedNow, err, result);
 // 	}
 // );
-
 // console.log('getAccountData() done');
 
 
