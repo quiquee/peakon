@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GsV-d8-gvB">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="peakon-logo-dark-blue.png" translatesAutoresizingMaskIntoConstraints="NO" id="DKK-v5-sGD">
+                                <frame key="frameInset" minY="-6" width="375" height="673"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="8iY-re-gPi">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QTa-39-V7L">
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cn1-0n-O3K">
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOT-TN-l4a">
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wxd-dp-EwU">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                        <state key="normal" title="Earn Reward.....">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="earnButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="g28-8a-tAS"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Powered by ruuvi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLo-85-yBK">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="H1E-kM-CgE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="DKK-v5-sGD" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="AKj-SS-mqC"/>
+                            <constraint firstAttribute="trailing" secondItem="DKK-v5-sGD" secondAttribute="trailing" id="ErA-rb-dQC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8iY-re-gPi" secondAttribute="trailing" id="GEV-HB-j9C"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="8iY-re-gPi" secondAttribute="bottom" constant="40" id="MPM-3E-ZDR"/>
+                            <constraint firstItem="8iY-re-gPi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="NK5-vR-EeE"/>
+                            <constraint firstItem="tLo-85-yBK" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="UmD-sh-tWy"/>
+                            <constraint firstItem="tLo-85-yBK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="W4K-hO-Knp"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="tLo-85-yBK" secondAttribute="bottom" constant="20" id="h4p-KP-EgI"/>
+                            <constraint firstItem="8iY-re-gPi" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="iCT-Aa-kyg"/>
+                            <constraint firstItem="DKK-v5-sGD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="jG5-Da-t3J"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="DKK-v5-sGD" secondAttribute="bottom" id="oNs-Nm-tbz"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="GRo-DC-ign"/>
+                    <connections>
+                        <outlet property="earnRewardButton" destination="wxd-dp-EwU" id="JHJ-j5-9uI"/>
+                        <outlet property="labelServiceData" destination="cOT-TN-l4a" id="cga-22-5HD"/>
+                        <outlet property="labelServiceUUID" destination="Cn1-0n-O3K" id="7Gd-PW-wqy"/>
+                        <outlet property="labelURL" destination="QTa-39-V7L" id="MWu-GC-dod"/>
+                        <segue destination="L5Q-ip-yau" kind="show" identifier="showRewards" id="Yno-qF-O6C"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1064.8" y="143.47826086956522"/>
+        </scene>
+        <!--Display Rewards View Controller-->
+        <scene sceneID="FYq-hy-qtc">
+            <objects>
+                <viewController id="L5Q-ip-yau" customClass="DisplayRewardsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OBz-RB-eGg"/>
+                        <viewControllerLayoutGuide type="bottom" id="Bjd-Rg-gIK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4FQ-oX-hVA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.45000000000000001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hiker_gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="sR1-xu-Bs1"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="150" translatesAutoresizingMaskIntoConstraints="NO" id="o71-SR-83j">
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="vEs-vI-PLj">
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="T39-Dt-aWw">
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pqh-w8-O1w">
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2h-69-jpz">
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <state key="normal" title="Explore">
+                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="exploreButtonTapped:" destination="L5Q-ip-yau" eventType="touchUpInside" id="px7-Vr-Qed"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqN-qx-g9Y">
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="QeS-pq-gDJ">
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zlj-d6-8D0">
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Wallet Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3S-HA-N2B">
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="KR9EZO9VFSNYTOEPQBIOVYHGBJQGHZQICDDBYIDTBBCHBZPCGXPUYMXXYVBQHBDXTVSKADTJRVINZXK9X" borderStyle="roundedRect" placeholder="Your Wallet Adress" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CNE-nP-NwW">
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                </accessibility>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ymc-qZ-RPF">
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <state key="normal" title="Collect Reward">
+                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="collectRewardButtonTapped:" destination="L5Q-ip-yau" eventType="touchUpInside" id="EDw-M4-zYi"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="sR1-xu-Bs1" firstAttribute="top" secondItem="4FQ-oX-hVA" secondAttribute="top" id="6vh-XI-JTa"/>
+                            <constraint firstAttribute="trailing" secondItem="sR1-xu-Bs1" secondAttribute="trailing" id="Di8-9k-4ks"/>
+                            <constraint firstItem="o71-SR-83j" firstAttribute="top" secondItem="OBz-RB-eGg" secondAttribute="bottom" constant="8" symbolic="YES" id="Duh-ci-qyQ"/>
+                            <constraint firstItem="Bjd-Rg-gIK" firstAttribute="top" secondItem="o71-SR-83j" secondAttribute="bottom" constant="20" id="Lxf-A3-xe0"/>
+                            <constraint firstItem="sR1-xu-Bs1" firstAttribute="leading" secondItem="4FQ-oX-hVA" secondAttribute="leading" id="Nvi-Gm-GFo"/>
+                            <constraint firstItem="o71-SR-83j" firstAttribute="leading" secondItem="4FQ-oX-hVA" secondAttribute="leadingMargin" constant="20" id="PnI-t4-HSx"/>
+                            <constraint firstItem="Bjd-Rg-gIK" firstAttribute="top" secondItem="sR1-xu-Bs1" secondAttribute="bottom" id="jd5-8t-aH9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="o71-SR-83j" secondAttribute="trailing" constant="20" id="p4o-2D-3YK"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="beaconnameLabel" destination="Pqh-w8-O1w" id="Huq-xB-HlK"/>
+                        <outlet property="colletcRewardButton" destination="ymc-qZ-RPF" id="weU-6J-Oct"/>
+                        <outlet property="exploreButton" destination="X2h-69-jpz" id="jU3-IG-8Co"/>
+                        <outlet property="rewardLabel" destination="zlj-d6-8D0" id="Mqn-ZZ-TdG"/>
+                        <outlet property="walletAddressTextView" destination="CNE-nP-NwW" id="VdY-Ub-K1S"/>
+                        <outlet property="weatherDataLabel" destination="gqN-qx-g9Y" id="Uaq-tC-g84"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pe0-u8-hV2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1892" y="173.16341829085459"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="2VV-sR-Zst">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GsV-d8-gvB" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ebp-dL-Xzk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Yz8-Qb-cVJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yTM-DR-Uog" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="125.59999999999999" y="143.47826086956522"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="hiker_gray.png" width="1095" height="1787"/>
+        <image name="peakon-logo-dark-blue.png" width="2062" height="878"/>
+    </resources>
+</document>
