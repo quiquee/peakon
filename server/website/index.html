@@ -1,10 +1,97 @@
-<html>
-	<head>
-		<title>Peakon</title>
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-	</head>
-	<body>
-		<h1>Hi there, this is Peakon</h1>
-		<img src="img/peakon-logo-dark-blue.png">
-	</body>
-</html>
+<HEAD>
+
+<STYLE type="text/css">
+[id^="togList"],                        /* HIDE CHECKBOX */
+[id^="togList"] ~ .list,                /* HIDE LIST */
+[id^="togList"] + label  span + span,   /* HIDE "Collapse" */
+[id^="togList"]:checked + label span{   /* HIDE "Expand" (IF CHECKED) */
+  display:none;
+}
+
+.peakonDetails { display:none; }
+
+[id^="togList"]:checked + label span + span{
+  display:inline-block;                 /* SHOW "Collapse" (IF CHECKED) */
+}
+[id^="togList"]:checked ~ .list{
+  display:block;                        /* SHOW LIST (IF CHECKED) */
+}
+</STYLE>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<SCRIPT>
+$().ready(function () {
+$.getJSON( 'http://207.154.208.91/beacons',
+         function(json) {
+
+            $.each(json, function (i, result) {
+		      $(".list").append( beautify(result,i ) ) ;
+
+    		});
+        
+        }) ;
+
+});
+
+function beautify(peakon, i ) {
+    var html ;
+    html = "<b>" + peakon.beaconName + "</b>" ;
+    html = html + "<br><b>Preakon Owner: </b>" + peakon.beaconOwner ;
+    html = html + "<br><b>Reward: </b>" + peakon.beaconReward;
+    html = html + "<br><a href=" + peakon.beaconUrl + ">See in Wikipedia</a>" ; 
+    html = html + "<hr>" ; 
+
+    return html ;
+
+}
+
+function imageWp(viewer) {
+
+    var word = 'Appendizitis';
+
+    $.ajaxPrefilter(function (options) {
+        if (options.crossDomain && jQuery.support.cors) {
+            var https = (window.location.protocol === 'http:' ? 'http:' : 'https:');
+            options.url = https + '//cors-anywhere.herokuapp.com/' + options.url;
+        }
+    });
+
+    $.get(
+        'https://de.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=' + word + '&callback=?',
+
+    function (response) {
+        var m;
+        var urls = [];
+        var regex = /<img.*?src=\\"(.*?)\\"/gmi;
+
+        while (m = regex.exec(response)) {
+            urls.push(m[1]);
+        }
+
+	    $(viewer).append('<img src="' + window.location.protocol + urls[0] + '">');
+
+        urls.forEach(function (url) {
+            $("#viewer").append('<img src="' + window.location.protocol + url + '">');
+        });
+    });
+}
+
+
+</SCRIPT>
+	<title>Peakon</title>
+</HEAD>
+		
+<h1>Hi there, this is Peakon</h1>
+<img src="img/peakon-logo-dark-blue.png">
+	
+<h1>
+Peakon List
+</h1>
+  
+  <div class="list">
+   
+  </div> 
+
+ <!--/div-->
+
