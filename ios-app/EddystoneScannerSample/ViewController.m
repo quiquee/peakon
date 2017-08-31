@@ -165,14 +165,23 @@
                                 NSError *error) {
                
                 self.earnRewardButton.enabled = true;
+                NSLog(@"res---%@", response);
+                responseDict=[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                
+                NSLog(@"the value is dictionary is %@",responseDict);
+                if (! responseDict || [responseDict count] <=1){
+                    NSLog(@"beacon not found");
+                    return;
+                }
                 NSLog(@">>>Reward from Beacon with Identifier: %@", peripheralIdentifier);
+                
                 dispatch_async(dispatch_get_main_queue(), ^{
                     self.labelURL.text = urlString;
                     self.labelServiceData.text =  peripheralIdentifier;
                     if(error){
                         self.labelServiceUUID.text =  error;
-                        
                     }
+                    
                     [self performSegueWithIdentifier:@"showRewards" sender:self];
                     
                 });
@@ -195,10 +204,7 @@
                  }
                  }
                 */
-                NSLog(@"res---%@", response);
-                responseDict=[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-                
-                NSLog(@"the value is dictionary is %@",responseDict);
+              
             }] resume];
     
     

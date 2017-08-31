@@ -311,7 +311,7 @@
 					};
 					6BD89F531B154502001C5B31 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = 9WPNF8363P;
+						DevelopmentTeam = VQ5XD7Z3HS;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -578,11 +578,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9WPNF8363P;
+				DEVELOPMENT_TEAM = VQ5XD7Z3HS;
 				INFOPLIST_FILE = EddystoneScannerSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.example.Peakon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -591,11 +591,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9WPNF8363P;
+				DEVELOPMENT_TEAM = VQ5XD7Z3HS;
 				INFOPLIST_FILE = EddystoneScannerSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.example.Peakon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
